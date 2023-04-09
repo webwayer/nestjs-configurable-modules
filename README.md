@@ -1,4 +1,6 @@
 # nestjs-configurable-modules
+[![npm version](https://badge.fury.io/js/nestjs-configurable-modules.svg)](https://badge.fury.io/js/nestjs-configurable-modules)  
+
 Enables the creation of highly configurable modules for your NestJS applications with ease.
 
 ## Table of Contents
