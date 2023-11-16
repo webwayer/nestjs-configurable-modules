@@ -1,4 +1,4 @@
-import type { DynamicModule, Type } from '@nestjs/common'
+import { DynamicModule, Type } from '@nestjs/common'
 import { AsyncParams } from './AsyncParams'
 
 export namespace ConfigurableImport {

@@ -71,8 +71,6 @@ describe('configurableModule', () => {
       const factory2 = configurableModule(TestConfigClass, factory, {})
       const module = factory2(factoryProps)
 
-      console.log(JSON.stringify(uncoverModule(module), null, 2))
-
       expect(uncoverModule(module)).toMatchObject(
         testConfigurableModule(testConfigurableImportModule(), testConfigurableModule({ module: 'SomeImportModule' })),
       )

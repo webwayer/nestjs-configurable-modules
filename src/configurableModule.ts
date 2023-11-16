@@ -1,4 +1,4 @@
-import type { DynamicModule } from '@nestjs/common'
+import { DynamicModule } from '@nestjs/common'
 import { AsyncParams, isAsyncParams } from './utils/AsyncParams'
 import {
   setupConfigurableImport,

@@ -1,4 +1,4 @@
-import type { DynamicModule } from '@nestjs/common'
+import { DynamicModule } from '@nestjs/common'
 import { ConfigurableImport } from './ConfigurableImport'
 
 export function createNamedClass(name: string) {
