@@ -1,6 +1,6 @@
 {
   "name": "nestjs-configurable-modules",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": "git@github.com:webwayer/nestjs-configurable-modules.git",
   "author": "Rodion Balandin <webwayer@gmail.com>",
   "main": "build/index.js",

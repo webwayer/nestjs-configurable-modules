@@ -17,7 +17,7 @@ import {
 describe('configurableModule', () => {
   it('error', () => {
     const factory = configurableModule('' as any, {})
-    expect(() => factory('' as any)).toThrowError(
+    expect(() => (factory as any)('')).toThrowError(
       'ConfigurableModule: "" of [string], "" is not valid config base for module',
     )
   })
@@ -38,6 +38,45 @@ describe('configurableModule', () => {
         exports: ['TestToken'],
       }),
     )
+  })
+
+  describe('empty configs', () => {
+    it('empty', () => {
+      const factory = configurableModule({
+        imports: [{ module: class SomeImportModule {} }],
+      })
+      const module = factory()
+
+      expect(uncoverModule(module)).toMatchObject(testConfigurableModule({ module: 'SomeImportModule' }))
+    })
+
+    it('empty in empty', () => {
+      const factory = configurableModule({
+        imports: [{ module: class SomeImportModule {} }],
+      })
+
+      const factory2 = configurableModule(factory, {})
+      const module = factory2()
+
+      expect(uncoverModule(module)).toMatchObject(
+        testConfigurableModule(testConfigurableModule({ module: 'SomeImportModule' })),
+      )
+    })
+
+    it('empty inside other configurableModule', () => {
+      const factory = configurableModule({
+        imports: [{ module: class SomeImportModule {} }],
+      })
+
+      const factory2 = configurableModule(TestConfigClass, factory, {})
+      const module = factory2(factoryProps)
+
+      console.log(JSON.stringify(uncoverModule(module), null, 2))
+
+      expect(uncoverModule(module)).toMatchObject(
+        testConfigurableModule(testConfigurableImportModule(), testConfigurableModule({ module: 'SomeImportModule' })),
+      )
+    })
   })
 
   describe('configs', () => {

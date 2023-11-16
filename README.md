@@ -108,16 +108,20 @@ const app = await NestFactory.create(AppModule.createModule({ url: '...' }))
 ```
 
 ## API
-### configurableModule
-`configurableModule` function replaces the NestJS `@Module` decorator and makes creating a module a two-step process.  
+### configurableModule (or a smartModule alias can be used)
+`configurableModule` or `smartModule` function replaces the NestJS `@Module` decorator and makes creating a module a two-step process.  
 1. Use `configurableModule` with `configurableImports` (classes/modules that before importing needs to be configured), and `moduleDefinition` (object of same format than you would pass into NestJS `@Module` decorator).  
 The result is function that creates module applying configuration (see [Create Module Function](#create-module-function)).
 2. Use result function from the step #1 with combined configuration for all `configurableImports`.  
 The result is module based on `moduleDefinition` with auto-imported and configured `configurableImports`.
 
 <pre>
-configurableModule(<a href="#configurable-imports">...configurableImports</a>, <a href="#module-definition">moduleDefinition</a>) => <a href="#create-module-function">createModuleFunction</a>
+configurableModule(<a href="#configurable-imports">...configurableImports?</a>, <a href="#module-definition">moduleDefinition</a>) => <a href="#create-module-function">createModuleFunction</a>
 </pre>
+
+Note: `configurableModule` function allows only one argument which is a `moduleDefinition``.  
+In this case empty factory function will be returned. `() => DynamicModule`  
+It also can be used as a `configurableImport` in other `configurableModule` calls and doesn't affect the resulting configuration.
 
 #### Configurable Imports
 Configurable imports can be 2 types: Configurable classes or Configurable modules.

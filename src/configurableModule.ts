@@ -17,6 +17,9 @@ interface ConfigurableModuleTyping {
     ...args: [T1, ...T, ModuleOrModuleDefinitionFn<[T1, ...T]>]
   ): ConfigurableImportInfer.InferCombinedFactory<[T1, ...T]>
 }
+interface ConfigurableModuleTyping {
+  (moduleOrModuleDefinitionFn: ModuleOrModuleDefinitionFn<[]>): () => DynamicModule
+}
 
 function configurableModuleImplementation(...args) {
   const configurableImports = args.slice(0, args.length - 1) as ConfigurableImport[]
@@ -54,3 +57,4 @@ function configurableModuleImplementation(...args) {
   }
 }
 export const configurableModule = configurableModuleImplementation as ConfigurableModuleTyping
+export const smartModule = configurableModuleImplementation as ConfigurableModuleTyping

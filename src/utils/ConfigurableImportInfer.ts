@@ -69,6 +69,8 @@ export namespace ConfigurableImportInfer {
 
   type InferOne<T> = T extends Class
     ? InferClass<T>
+    : T extends () => DynamicModule
+    ? {}
     : T extends Function
     ? InferFactory<T>
     : T extends Object & { config: Class }
@@ -87,7 +89,7 @@ export namespace ConfigurableImportInfer {
   export type InferConfigurableImport<T extends ConfigurableImport> = InferOne<T>
   export type InferConfigurableImports<T extends ConfigurableImport[]> = InferMultiple<T>
   export type InferCombinedProps<T extends ConfigurableImport[]> = CleanRecursively<Spread<InferConfigurableImports<T>>>
-  export type InferCombinedFactory<T extends ConfigurableImport[]> = (
-    arg: InferCombinedProps<T> | AsyncParams<InferCombinedProps<T>>,
-  ) => DynamicModule
+  export type InferCombinedFactory<T extends ConfigurableImport[]> = T extends Array<() => DynamicModule>
+    ? () => DynamicModule
+    : (arg: InferCombinedProps<T> | AsyncParams<InferCombinedProps<T>>) => DynamicModule
 }
