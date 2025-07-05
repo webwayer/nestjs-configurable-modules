@@ -1,3 +1,14 @@
+# ⚠️ **DEPRECATED PACKAGE**
+
+**This package is deprecated and no longer maintained.** 
+
+Please migrate to **[nestjs-smart-modules](https://github.com/webwayer/nestjs-smart-modules)** for continued support and new features.
+
+- 📦 **NPM**: https://www.npmjs.com/package/nestjs-smart-modules
+- 🔗 **GitHub**: https://github.com/webwayer/nestjs-smart-modules
+
+---
+
 # nestjs-configurable-modules
 [![npm version](https://badge.fury.io/js/nestjs-configurable-modules.svg)](https://badge.fury.io/js/nestjs-configurable-modules)  
 
